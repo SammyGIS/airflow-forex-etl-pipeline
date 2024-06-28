@@ -1,0 +1,12 @@
+Cmd 
+for /F %i in ('docker images -a -q') do docker rmi -f %i
+
+Powershell
+docker images -a -q | % { docker image rm $_ -f }
+
+Unix
+docker rmi -f $(docker images -aq)
+docker rm -vf $(docker ps -aq)
+
+Remove all unused command
+docker system prune -a --volumes
